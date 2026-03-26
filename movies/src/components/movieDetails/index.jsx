@@ -61,6 +61,14 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+      <Paper component="ul" sx={{...root}}>
+        <Chip label = "Production Countries" sx={{...chip}} color= "primary" />
+        {movie.production_countries.map((c) => (
+          <li key={c.name}>
+            <Chip label={c.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
       
             <Fab
         color="secondary"
