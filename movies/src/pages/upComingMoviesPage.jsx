@@ -9,7 +9,7 @@ import Spinner from '../components/spinner';
 const UpcomingMoviesPage = (props) => {
 
   const { data, error, isPending, isError  } = useQuery({
-    queryKey: ['upcoming'],
+    queryKey: ['upcoming'], //for array to work, must have queryKey and queryFn
     queryFn: getUpcomingMovies,
   })
   
