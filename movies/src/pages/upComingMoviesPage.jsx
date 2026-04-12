@@ -1,11 +1,12 @@
 import React from "react";
-import { getMovies, getUpcomingMovies } from "../api/tmdb-api";
+import {getUpcomingMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
+import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
-const HomePage = (props) => {
+
+const UpcomingMoviesPage = (props) => {
 
   const { data, error, isPending, isError  } = useQuery({
     queryKey: ['upcoming'],
@@ -23,18 +24,22 @@ const HomePage = (props) => {
   const movies = data.results;
 
   // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  const mustWatch = movies.filter(m => m.mustWatch)
+    localStorage.setItem('mustWatch', JSON.stringify(mustWatch))   
 
-     return (
-      <PageTemplate
-        title="Upcoming Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-      />
+       return (
+    <PageTemplate
+      title="Upcoming Movies"
+      movies={movies}
+      action={(movie) => {
+        return (
+          <>
+            <AddToMustWatchIcon movie={movie} />
+          </>
+        );
+      }}
+    />
   );
 };
-export default HomePage;
+
+export default UpcomingMoviesPage;

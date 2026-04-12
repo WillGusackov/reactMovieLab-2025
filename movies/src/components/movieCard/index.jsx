@@ -15,21 +15,32 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import Avatar from '@mui/material/Avatar';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 export default function MovieCard({ movie, action}) {
-    const { favorites, addToFavorites } = useContext(MoviesContext);
-
-  if (favorites.find((id) => id === movie.id)) {
+    const { favorites, addToFavorites, mustWatch, addToMustWatchIcon } = useContext(MoviesContext);
+  if ( favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
   }
+
+  if ( mustWatch.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false
+  }
+
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();
     addToFavorites(movie);
   };
 
+  const handleAddToMustWatch = (e) => {
+    e.preventDefault();
+    addToMustWatchIcon(movie);
+  };
 
   return (
     <Card>
@@ -39,7 +50,12 @@ export default function MovieCard({ movie, action}) {
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
+          ) : movie.mustWatch ? (
+            <Avatar sx={{ backgroundColor: 'purple' }}>
+              <PlaylistAddIcon />
+            </Avatar>
           ) : null
+          
         }
         title={
           <Typography variant="h5" component="p">
