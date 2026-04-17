@@ -11,7 +11,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
-import WatchListPage from "../../pages/watchListPage";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
 import Checkbox from "@mui/material/Checkbox";
@@ -109,7 +108,7 @@ export default function FilterMoviesCard(props) {
 
      <CardContent>
   <FormControl sx={{...formControl}}>
-    Must Watch
+    Watch List Only
     <Checkbox
       id="mustWatch-checkbox"
       checked={props.mustWatchFilter}
