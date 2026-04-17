@@ -3,11 +3,16 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import { useContext } from "react"; //assgn1
+import { MoviesContext } from "../../contexts/moviesContext"; //assgn1
+
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [mustWatchFilter, setMustWatchFilter] = useState(false); //assgn1
   const genreId = Number(genreFilter);
+  const { mustWatch } = useContext(MoviesContext); //assgn1
 
   let displayedMovies = movies
     .filter((m) => {
@@ -15,11 +20,15 @@ function MovieListPageTemplate({ movies, title, action }) {
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      return mustWatchFilter ? mustWatch.includes(m.id) : true; //assgn1
     });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
+    else if (type === "genre") setGenreFilter(value);
+    else if (type === "mustWatch") setMustWatchFilter(value); //assgn1
   };
 
   return (
@@ -37,6 +46,7 @@ function MovieListPageTemplate({ movies, title, action }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            mustWatchFilter={mustWatchFilter}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

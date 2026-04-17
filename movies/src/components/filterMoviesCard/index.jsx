@@ -11,9 +11,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
+import WatchListPage from "../../pages/watchListPage";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
-
+import Checkbox from "@mui/material/Checkbox";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const formControl = 
   {
@@ -42,6 +44,8 @@ export default function FilterMoviesCard(props) {
     genres.unshift({ id: "0", name: "All" });
   }
 
+
+
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); 
@@ -54,6 +58,10 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
+
+  const handleMustWatchChange = (e) => {
+    handleChange(e, "mustWatch", e.target.checked);
+  }
 
 
 
@@ -98,6 +106,20 @@ export default function FilterMoviesCard(props) {
           </Select>
         </FormControl>
       </CardContent>
+
+     <CardContent>
+  <FormControl sx={{...formControl}}>
+    Must Watch
+    <Checkbox
+      id="mustWatch-checkbox"
+      checked={props.mustWatchFilter}
+      onChange={handleMustWatchChange}
+    />
+  </FormControl>
+</CardContent>
+
+
+      
       <CardMedia
         sx={{ height: 300 }}
         image={img}
