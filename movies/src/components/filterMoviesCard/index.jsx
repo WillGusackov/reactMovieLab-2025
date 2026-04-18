@@ -63,17 +63,16 @@ export default function FilterMoviesCard(props) {
   }
 
 
-
+//bold extra color 
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: "rgb(109, 152, 233)"
       }} 
       variant="outlined">
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
+        <Typography backgroundColor="rgb(173, 200, 253)" variant="h5" component="h1">
+          <b><SearchIcon fontSize="medium" /> Filter movies.</b>
         </Typography>
             <TextField
       sx={{...formControl}}

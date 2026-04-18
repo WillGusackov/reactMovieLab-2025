@@ -11,6 +11,10 @@ import { useNavigate } from "react-router";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme } from '@mui/material/styles';
+import SlideshowIcon from '@mui/icons-material/Slideshow'; //assgn1
+
+
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -18,7 +22,17 @@ const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const theme = useTheme();
+//assgn1
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#673ab7",
+    },
+    secondary: {
+      main: "#0f0730",
+    },
+  },
+});
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   
   const navigate = useNavigate();
@@ -28,6 +42,7 @@ const SiteHeader = () => {
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Watch List", path: "/movies/watchlist" },
+    { label: "Random Movies", path: "/movies/random"},
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -39,15 +54,16 @@ const SiteHeader = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  //icon assgn1 slideshow
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
-            TMDB Client
+          <SlideshowIcon fontSize="large" /> 
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
+            App for movie lovers
           </Typography>
             {isMobile ? (
               <>

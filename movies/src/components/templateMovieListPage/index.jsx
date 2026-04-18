@@ -5,6 +5,7 @@ import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 import { useContext } from "react"; //assgn1
 import { MoviesContext } from "../../contexts/moviesContext"; //assgn1
+import { useColorScheme } from "@mui/material/styles";
 
 
 function MovieListPageTemplate({ movies, title, action }) {
@@ -32,7 +33,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
-    <Grid container>
+    <Grid container sx={{ color: "rgb(70, 110, 243)", padding: "20px" }}>
       <Grid size={12}>
         <Header title={title} />
       </Grid>
