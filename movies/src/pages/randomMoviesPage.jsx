@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getMovie } from "../api/tmdb-api";
 import { Link } from "react-router";
+import { Button } from "@mui/material";
 
 const RandomMoviePage = () => {
   const [movie, setMovie] = useState(null);
@@ -21,20 +22,22 @@ const RandomMoviePage = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "10px", backgroundColor: "#d4e5ff", padding: "20px", borderColor: "#a0c4ff", borderStyle: "solid", borderWidth: "2px"   }} >
       <h1>Random Generator</h1>
 
-      <button onClick={handleClick}>
+      <Button onClick={handleClick} variant="contained">
         Generate Random Movie
-      </button>
+      </Button>
 
       {movie && (
-        <div>
-          <h2>{movie.title}</h2>
+        <div style={{ allignItems: "center", marginTop: "20px", backgroundColor: "#c8dcfb", padding: "20px", borderStyle: "solid", borderWidth: "2px", borderColor: "#a0c4ff" }}>
+          <h2 allignItems="center">{movie.title}</h2>
           <p>{movie.overview}</p>
 
           <Link to={`/movies/${randomId}`}>
-            <button>Go To Movie Details</button>
+            <Button color="inherit" variant="outlined">
+              Go To Movie Details
+            </Button>
           </Link>
         </div>
       )}
