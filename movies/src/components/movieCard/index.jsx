@@ -16,6 +16,7 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import Avatar from '@mui/material/Avatar';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import allignItems from "@mui/material/Grid";
 
 export default function MovieCard({ movie, action}) {
     const { favorites, addToFavorites, mustWatch, addToMustWatchIcon } = useContext(MoviesContext);
@@ -43,7 +44,18 @@ export default function MovieCard({ movie, action}) {
   };
 
   return (
-    <Card>
+
+    
+    <Card sx={{ maxWidth: 345, height: 600, backgroundColor: "#e6eefa", color: "black" }}>
+             <CardMedia
+        sx={{ height: 300 }}
+        image={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+            : img
+        }
+      />
+            
             <CardHeader
         avatar={
           movie.favorite ? (
@@ -57,41 +69,41 @@ export default function MovieCard({ movie, action}) {
           ) : null
           
         }
+
+
+        
         title={
-          <Typography variant="h5" component="p">
-            {movie.title}{" "}
+          <Typography sx={{borderTop: 2, borderBottom: 2, borderColor: 'darkgray', height: 60, textDecorationStyle: "bold", fontSize: "1.25rem" }} >
+            {movie.title.length > 30
+            ? movie.title.slice(0, 30) + "..."
+            : movie.title}
           </Typography>
         }
       />
 
-      <CardMedia
-        sx={{ height: 500 }}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
+    
       <CardContent>
         <Grid container>
-          <Grid size={{xs: 6}}>
+          <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {" "}{movie.release_date}{"    "}
             </Typography>
           </Grid>
-          <Grid size={{xs: 6}}>
+
+          <Grid item xs={6}>
             <Typography variant="h6" component="p">
+              | {"  "}
               <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              {"  "} {movie.vote_average}{" "} |
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
 
-      {action(movie)}
-      
+        {action(movie)}
+        
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...

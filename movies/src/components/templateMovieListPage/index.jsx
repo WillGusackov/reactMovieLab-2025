@@ -33,8 +33,8 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
-    <Grid container sx={{ color: "rgb(70, 110, 243)", padding: "20px" }}>
-      <Grid size={12}>
+    <Grid container sx={{ padding: "10px" }}>
+      <Grid size={20}>
         <Header title={title} />
       </Grid>
       <Grid container sx={{flex: "1 1 500px"}}>

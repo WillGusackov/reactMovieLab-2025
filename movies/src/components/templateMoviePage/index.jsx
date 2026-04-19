@@ -28,7 +28,7 @@ const TemplateMoviePage = ({ movie, children }) => {
     <>
       <MovieHeader movie={movie} />
 
-      <Grid container spacing={5} style={{ padding: "15px", color : "black" }}>
+      <Grid container spacing={5} style={{ padding: "5px", color : "black" }}>
         <Grid size={{xs: 3}}>
           <div sx={{
             display: "flex",
