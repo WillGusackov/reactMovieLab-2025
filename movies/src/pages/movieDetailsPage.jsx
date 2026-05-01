@@ -15,6 +15,7 @@ const MoviePage = (props) => {
     queryFn: getMovie,
   })
 
+
   const { data: upcomingMovies } = useQuery({
     queryKey: ['upcoming', { id: id }],
     queryFn: getUpcomingMovies
@@ -34,7 +35,7 @@ const MoviePage = (props) => {
     <>
       {movie ? (
         <>
-          <PageTemplate movie={movie} upcomingMovies={upcomingMovies}>
+          <PageTemplate movie={movie} upcomingMovies={upcomingMovies} >
             <MovieDetails movie={movie} upcomingMovies={upcomingMovies} />
           </PageTemplate>
         </>

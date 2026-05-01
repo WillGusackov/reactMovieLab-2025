@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import Button from "@mui/material/Button";
 
 
 
@@ -25,6 +26,15 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const whereToWatchSearch = (movieId) => {
+        const url = `https://67movies.net/watch/movie/${movie.id}`; //for assg1 it brings you to a site that you can watch for free
+        window.open(url, '_blank');
+    };
+
+  const wikiLinkDetails = (movieId) => {
+    const url = `https://en.wikipedia.org/wiki/${movie.title}`; //assg1
+    window.open(url, '_blank');
+  }
 
   return (
     <>
@@ -69,7 +79,28 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
-      
+
+      <Typography variant="h5" component="h3">
+        More Details on the movie:
+      </Typography>
+      <Paper component="ul" sx={{...root}}>
+        <Button variant="contained" color="primary" onClick={(wikiLinkDetails)}>
+          Go To Wiki
+        </Button>
+      </Paper>
+
+       <Typography variant="h6" component="p">
+          Where to Watch? 
+        </Typography>
+        <Typography variant="h8" component="p">
+          You can watch this movie for free on 67movies.net, click below to go directly to the movie to watch now.
+        </Typography>
+      <Paper component="ul" sx={{...root}}>
+        <Button variant="contained" color="primary" onClick={(whereToWatchSearch)}>
+          Watch Now
+          </Button>
+      </Paper>
+
             <Fab
         color="secondary"
         variant="extended"
